@@ -1,0 +1,17 @@
+@model IReadOnlyDictionary<string, int>
+@{
+    ViewData["Title"] = "ShoppingList";
+}
+
+<h1>Our shopping list</h1>
+<table class="bordered-table">
+    @foreach (var (product, quantity) in Model)
+    {
+        <tr>
+            <td>@product</td>
+            <td>@quantity</td>
+        </tr>
+    }
+</table>
+
+<partial name="TimeToBuy" />

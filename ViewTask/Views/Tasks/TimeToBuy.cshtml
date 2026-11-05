@@ -1,0 +1,4 @@
+@inject ITimeService TimeService
+
+<h3>It's time to shopping!</h3>
+<p>@TimeService.GetTimeForTomorrow().ToString("MM/dd/yyyy")</p>

@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "ShoppingCart";
+
+    var supermarkets = (IEnumerable<string>)ViewBag.Supermarkets;
+    var shippingDates = (IReadOnlyList<DateTime>)ViewBag.ShippingDates;
+    var products = (IEnumerable<string>)ViewBag.Products;
+}
+
+<h1>Your shopping cart</h1>
+
+@using (Html.BeginForm("ShoppingCart", "Tasks", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <p>
+        @Html.Label("fullName", "Input your fullname:")<br />
+        @Html.TextBox("fullName")
+    </p>
+    <p>
+        @Html.Label("address", "Input your address :")<br />
+        @Html.TextBox("address")
+    </p>
+    <p>
+        @Html.DropDownList("supermarket", new SelectList(supermarkets))
+    </p>
+    <p>
+        @for (var i = 0; i < shippingDates.Count; i++)
+        {
+            @Html.RadioButton("shippingDate", shippingDates[i], isChecked: i == 0) @shippingDates[i]<br />
+        }
+    </p>
+    <p>
+        @Html.ListBox("products", new MultiSelectList(products))
+    </p>
+    <input type="submit" value="Send" />
+}

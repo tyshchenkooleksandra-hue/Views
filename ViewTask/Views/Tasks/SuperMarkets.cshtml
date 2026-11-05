@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "SuperMarkets";
+
+    var supermarkets = (IReadOnlyCollection<string>)ViewBag.Supermarkets;
+}
+
+<h1>Our Supermarkets</h1>
+<h3>There are @supermarkets.Count markets:</h3>
+@foreach (var supermarket in supermarkets)
+{
+    <p>@supermarket</p>
+}
